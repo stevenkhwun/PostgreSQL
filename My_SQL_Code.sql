@@ -129,7 +129,16 @@ SELECT first_name, last_name, school, salary
 FROM teachers
 WHERE salary >= 40000 AND salary <= 65000;
 
+-- Match one of a set of values
+SELECT last_name, school, hire_date
+FROM teachers
+WHERE last_name IN ('Bush', 'Roush');
+
 -- Listing 3-8: Filtering with LIKE AND ILIKE
+-- LIKE is case sensitive
+-- ILIKE is case-insensitive, ILIKE is a PostgreSQL-only implementation
+-- Percent sign (%): A wildcard matching one or more characters
+-- Underscore (_): A wildcard matching just one character
 
 SELECT first_name
 FROM teachers
@@ -151,6 +160,12 @@ FROM teachers
 WHERE last_name = 'Cole'
       OR last_name = 'Bush';
 
+-- The following gives an equivalent result
+SELECT *
+FROM teachers
+WHERE last_name IN ('Cole', 'Bush');
+
+
 SELECT *
 FROM teachers
 WHERE school = 'F.D. Roosevelt HS'
@@ -171,6 +186,12 @@ SELECT first_name, last_name, school, hire_date, salary
 FROM teachers
 WHERE school LIKE '%Roos%'
 ORDER BY hire_date DESC;
+
+-- SQL is particular about the order of keywords, so follow this convention
+SELECT column_names
+FROM table_name
+WHERE criteria
+ORDER BY column_names;
 
 
 
